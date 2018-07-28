@@ -1,0 +1,157 @@
+/* Core Styles */
+h1, h2, h3 {
+    margin: 0;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+/* App */
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+
+/* Input */
+
+.weather-input {
+    margin: 2em 0;
+}
+
+.app-title {
+    font-size: 2em;
+}
+
+.input-title {
+    font-size: 1.5em;
+    text-align: center;
+    margin: 1em 0 1em 0;
+}
+
+form {
+    text-align: center;
+    margin: 1em 0 1em 0;
+}
+
+input {
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    max-width: 250px;
+    outline: none;
+    position: relative;
+    right: 10px;
+}
+
+
+/*Weather Display */
+.current-weather {
+    background: #f3f3f3;
+    color: white;
+    min-height: 25em;
+}
+
+.empty-weather {
+    color: rgb(33, 33, 33);
+    text-align: center;
+}
+
+.empty-weather p {
+    font-size: 1em;
+}
+
+.no-city {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.located-city-display {
+    background-size: cover!important;
+    background-position: center!important;
+    background-repeat: no-repeat!important;
+    min-height: 20em;
+}
+
+.located-city-display h3 {
+    margin-top: 3em;
+}
+
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 1em 0;
+}
+
+.cels-fahr {
+    width: 190px;
+}
+
+.city-wrapper {
+    text-align: center;
+}
+.city-wrapper h1 {
+    color: white;
+}
+
+
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 700px) {
+    /*Core Styles*/
+    .app {
+        flex-direction: row;
+    }
+
+    h1 {
+        font-size: 4em;
+    }
+
+    /*Input*/
+    .weather-input {
+        width: 40%;
+        margin-top: 5em;
+    }
+
+    /*Weather Display*/
+    .current-weather {
+        width: 60%;
+        min-height: 50em;
+    }
+
+    .empty-weather p {
+        font-size: 2em;
+    }
+
+    .located-city-display {
+        min-height: 50em;
+    }
+
+    .no-city {
+        font-size: 3em;
+        margin-top: 4em;
+    }
+
+    .btn-wrapper {
+        justify-content: flex-end;
+    }
+    .cels-fahr {
+        margin-right: 1em;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+    /* Input */
+    .app-title {
+        font-size: 3em;
+    }
+
+
+    /* Weather Display */
+    .located-city-display {
+        min-height: 60em;
+    }
+}
