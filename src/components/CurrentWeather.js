@@ -13,6 +13,7 @@ import {
     isNight,
     getWind
 } from '../constants/constants'
+import Conditions from './Conditions'
 
 class CurrentWeather extends Component {
     state = {
@@ -25,6 +26,7 @@ class CurrentWeather extends Component {
 
     render() {
         const { error, weatherData, localTime, loading } = this.props;
+        console.log('localData: ', localTime);
         const local = new Date(localTime.timestamp * 1000);
         const formatted = localTime.formatted;
         const { isCelsius } = this.state;
@@ -92,42 +94,82 @@ class CurrentWeather extends Component {
 
         // Once request comes:
         return (
-        <div className='located-city-display' 
-            style={
-            isEmpty(weatherData) ?
+          <div className='located-city-display' 
+             style={
+             isEmpty(weatherData) ?
                 {...backgrounds.noCity} :
                 {...backgrounds.city}
-        }>
-            <div>
-                <div className='btn-wrapper'>
-                    <Button
-                    className='btn cels-fahr'
-                    onClick={this.handleFahrenheit}
-                    >
-                        {isCelsius ? 'To Farenheit':
-                        'To Celsius'}<Icon right>autorenew</Icon>
-                    </Button>
+          }>
+                {/*Container for time and Fahrenheight/Cels button*/}
+                <div className='time-button-wrapper'>
+                
+                    {/*----Show time here for larger screens------*/}
+                    <div className='lrg-screen-time'>
+                        {!localTime.formatted ?
+                        <p style={{fontSize: '1.5em'}}>Retrieving time...</p>: 
+                        <h1>{`${getLocalHours(formatted)}:${getLocalMin(minutes)} ${getAmOrPm(formatted)}`}</h1>}
+                    </div>
+
+                    {/*----Button for Fahrenheit & Celsius-----*/}
+                    <div className='btn-wrapper'>
+                        <Button
+                            className='btn grey darken-4 cels-fahr'
+                            waves='light'
+                            onClick={this.handleFahrenheit}
+                        >
+                            {isCelsius ? 'Fahrenheit':
+                            'Celsius'}<Icon right>autorenew</Icon>
+                        </Button>
+                    </div>
                 </div>
                 
+                {/*----City Name and Country-----*/}
                 <div className='city-wrapper'>
-                    <h1>{weatherData.name}</h1>
-                </div>
-                
-                <h1>{!isCelsius ? `${Math.floor(weatherData.main.temp)} F`: 
-                `${Math.floor(toCelsius(weatherData.main.temp))} C`}</h1>
-
-                <div className='weather-details'>
-                    <p>{weatherData.weather[0].description}</p>
-                    <img src={iconURL} alt='current conditions' />
-                    <p>The sky is {weatherData.clouds.all}% cloudy</p>
-                    <p>{getWind(weatherData.wind.speed, weatherData.wind.deg)}</p>
+                    <h1 className='city-name'>{weatherData.name},</h1>
+                    {!localTime.countryName ? <p style={{fontSize: '1.5em'}}>Retrieving country...</p>:
+                    <h1 className='country-name'>{localTime.countryName}</h1>}
                 </div>
 
-                {/* When localTime comes back, show time */}
-                {!localTime.formatted ?
-                <h1>Getting time...</h1>: 
-                <h1>{`${getLocalHours(formatted)}:${getLocalMin(minutes)} ${getAmOrPm(formatted)}`}</h1>}
-            </div>
+                {/*-----Current Temperature-----*/}
+                <div className='temp-wrapper' style={{textAlign: 'center'}}>
+                    <h2 className='temp'>{!isCelsius ? `${Math.floor(weatherData.main.temp)} F`: 
+                    `${Math.floor(toCelsius(weatherData.main.temp))} C`}</h2>
+                </div>
+
+                {/*------Local Time for Small Screens------*/}
+                <div className='sml-screen-time'>
+                    {!localTime.formatted ?
+                    <p style={{fontSize: '1.5em'}}>Retrieving time...</p>: 
+                    <h1 className='time'>{`${getLocalHours(formatted)}:${getLocalMin(minutes)} ${getAmOrPm(formatted)}`}</h1>}
+                </div>
+
+                {/* ------Conditions Container -------*/}
+                <div className='conditions-wrapper'>
+
+                    {/*----Current Conditions Title-----*/}
+                    <div className='conditions-title' style={{textAlign:'center'}}>
+                        <h4>Current Conditions</h4>
+                    </div>
+
+                    {/*----Current Conditions Div-----*/}
+                    <Conditions 
+                        title='DESCRIPTION'
+                        description={weatherData.weather[0].description}
+                        weather={weatherData}
+                        url={iconURL}
+                    />
+                    <div className='weather-details'>
+
+                        <div className='icon-condition' style={{display: 'flex'}}>
+                            <img src={iconURL} alt='current conditions' /> 
+                            <p style={{display:'inline-block'}}>{weatherData.weather[0].description}</p>
+                        </div>
+                        
+                        <p>The sky is {weatherData.clouds.all}% cloudy</p>
+                        <p>{getWind(weatherData.wind.speed, weatherData.wind.deg)}</p>
+                    </div>
+
+                </div>
         </div>
         )
     }

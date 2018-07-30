@@ -7,6 +7,10 @@ h1 {
     font-size: 3em;
 }
 
+h2 {
+    font-size: 2.5em;
+}
+
 /* App */
 .app {
     display: flex;
@@ -75,25 +79,57 @@ input {
     min-height: 20em;
 }
 
-.located-city-display h3 {
-    margin-top: 3em;
+.conditions-title {
+    margin: 1em 0;
 }
 
-.btn-wrapper {
+.time-button-wrapper {
     display: flex;
     justify-content: center;
-    padding: 1em 0;
+    align-items: center;
+    padding-top: 1em;
+}
+
+.lrg-screen-time {
+    display: none;
 }
 
 .cels-fahr {
-    width: 190px;
+    width: 186px;
+    border: 2px solid #959595;
 }
 
 .city-wrapper {
     text-align: center;
+    margin: 1em 0;
 }
-.city-wrapper h1 {
+.city-name, .country-name {
     color: white;
+}
+
+.temp-wrapper {
+    margin: 1em 0;
+}
+
+.sml-screen-time {
+    text-align: center;
+    margin: 1em 0;
+}
+
+.time {
+    font-size: 2.5em;
+}
+
+.conditions-title h4 {
+    font-size: 2em;
+}
+
+.condition-wrapper {
+    color: #252525;
+}
+
+.icon-condition p {
+    margin-left: 10px;
 }
 
 
@@ -105,8 +141,8 @@ input {
         flex-direction: row;
     }
 
-    h1 {
-        font-size: 4em;
+    h2 {
+        font-size: 3em;
     }
 
     /*Input*/
@@ -134,11 +170,33 @@ input {
         margin-top: 4em;
     }
 
-    .btn-wrapper {
-        justify-content: flex-end;
+    .time-button-wrapper {
+        justify-content: space-between;
+        padding: 2em 1em 0 1em;
     }
-    .cels-fahr {
-        margin-right: 1em;
+
+    .lrg-screen-time {
+        display: block;
+    }
+
+    .sml-screen-time {
+        display: none;
+    }
+
+    .city-wrapper {
+        margin-top: 4em;
+    }
+
+    .city-name, .country-name {
+        display: inline-block;
+    }
+
+    .country-name {
+        padding-left: 10px;
+    }
+
+    .conditions-wrapper {
+        margin-top: 3em;
     }
 
 }
