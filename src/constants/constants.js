@@ -33,7 +33,7 @@ export const isNight = (formatted, ) => {
 export const getNightImage = (conditions) => {
     if (conditions.includes('clear')) {
         return clearNight;
-    } else if (conditions.includes('rain')) {
+    } else if (conditions.includes('rain') || conditions.includes('drizzle')) {
         return nightRain;
     } else if (conditions.includes('cloud')) {
         return nightCloud;
@@ -46,7 +46,7 @@ export const getNightImage = (conditions) => {
 export const getImage = (conditions) => {
     if (conditions.includes('clear')) {
         return sunny;
-    } else if (conditions.includes('rain')) {
+    } else if (conditions.includes('rain') || conditions.includes('drizzle')) {
         return rain;
     } else if (conditions === 'few clouds') {
         return fewClouds;
@@ -63,6 +63,42 @@ export const getImage = (conditions) => {
     } 
     return sunny;
 };
+
+export const getTagline = (conditions) => {
+    if (conditions.includes('clear')) {
+        return "IT'S A BEAUTIFUL DAY!";
+    } else if (conditions.includes('rain') || conditions.includes('drizzle')) {
+        return "IT'S A LITTLE WET OUT THERE!";
+    } else if (conditions.includes('clouds')) {
+        return "THERE ARE A FEW CLOUDS";
+    } else if (conditions === 'overcast') {
+        return "LOTS OF CLOUDS";
+    } else if(conditions.includes('thunderstorm')) {
+        return "TAKE COVER!";
+    } else if(conditions.includes('snow')) {
+        return "BE CAREFUL DRIVING!";
+    } else if(conditions === 'mist' || conditions.includes('fog')) {
+        return "VISIBILITY MAY BE LOW"
+    } 
+    return "SEEMS LIKE A NICE DAY";
+}
+
+export const getNightTag = (conditions) => {
+    if (conditions.includes('clear')) {
+        return "IT'S A STARRY NIGHT!";
+    } else if (conditions.includes('rain') || conditions.includes('drizzle')) {
+        return "IT'S A LITTLE WET OUT THERE!";
+    } else if (conditions.includes('clouds')) {
+        return "MIGHT NOT SEE ANY STARS";
+    } else if(conditions.includes('thunderstorm')) {
+        return "TAKE COVER!";
+    } else if(conditions.includes('snow')) {
+        return "TRY TO STAY INSIDE TONIGHT";
+    } else if(conditions === 'mist' || conditions.includes('fog')) {
+        return "VISIBILITY MAY BE LOW"
+    } 
+    return "SEEMS LIKE A NICE EVENING";
+}
 
 //get Am or Pm
 export const getAmOrPm = timeString => {
@@ -126,5 +162,5 @@ export const getWind = (speed, deg) => {
     } else if (deg >= 250 && deg < 290) {
         direction = "West";
     } else direction =  "Northwest";
-    return `Wind: ${windSpeed} mph from the ${direction}`;
+    return `${windSpeed} mph from the ${direction}`;
 }

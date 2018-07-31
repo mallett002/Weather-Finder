@@ -124,12 +124,51 @@ input {
     font-size: 2em;
 }
 
-.condition-wrapper {
-    color: #252525;
+.conditions-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.icon-condition p {
-    margin-left: 10px;
+.condition-wrapper {
+    color: #252525;
+    width: 280px;
+    margin: 1em auto;
+    border-radius: 5px;
+}
+
+.weather-type-icon {
+    height: 70px;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conditions-icon {
+    position: relative;
+    right: 10px;
+}
+
+.description-wrapper {
+    text-align: center;
+}
+
+.description {
+    position: relative;
+    right: 10px;
+}
+
+/*Tagline */
+.tagline-wrapper {
+    text-align: center;
+    margin-top: 1em;
+    padding-bottom: 2em;
+}
+
+.tagline {
+    font-size: 2em;
 }
 
 
@@ -195,8 +234,16 @@ input {
         padding-left: 10px;
     }
 
+    .conditions-container {
+        flex-direction: row;
+    }
+
     .conditions-wrapper {
         margin-top: 3em;
+    }
+
+    .tagline-wrapper {
+        margin-top: 6em;
     }
 
 }
@@ -211,5 +258,9 @@ input {
     /* Weather Display */
     .located-city-display {
         min-height: 60em;
+    }
+
+    .condition-wrapper {
+        margin: 1em;
     }
 }

@@ -11,9 +11,16 @@ import {
     getLocalHours,
     toCelsius,
     isNight,
-    getWind
+    getWind,
+    getTagline,
+    getNightTag
 } from '../constants/constants'
 import Conditions from './Conditions'
+import Tagline from './Tagline'
+import description from '../images/description.png'
+import sky from '../images/sky.png'
+import wind from '../images/wind.png'
+
 
 class CurrentWeather extends Component {
     state = {
@@ -67,6 +74,19 @@ class CurrentWeather extends Component {
                 backgroundRepeate: 'no-repeate'
             }
         }
+
+        // description for the tagline
+        const main = !isEmpty(weatherData) && weatherData.weather[0].description;
+        const tagline = (description) => {
+            if(!isEmpty(weatherData)) {
+                if(night) {
+                    return getNightTag(description);
+                } else {
+                    return getTagline(description);
+                }  
+            }
+        }
+        
 
         //if there is an error, display it
         if (error !== null) {
@@ -152,24 +172,29 @@ class CurrentWeather extends Component {
                     </div>
 
                     {/*----Current Conditions Div-----*/}
-                    <Conditions 
-                        title='DESCRIPTION'
-                        description={weatherData.weather[0].description}
-                        weather={weatherData}
-                        url={iconURL}
-                    />
-                    <div className='weather-details'>
-
-                        <div className='icon-condition' style={{display: 'flex'}}>
-                            <img src={iconURL} alt='current conditions' /> 
-                            <p style={{display:'inline-block'}}>{weatherData.weather[0].description}</p>
-                        </div>
-                        
-                        <p>The sky is {weatherData.clouds.all}% cloudy</p>
-                        <p>{getWind(weatherData.wind.speed, weatherData.wind.deg)}</p>
+                    <div className='conditions-container'>
+                        <Conditions 
+                            title='DESCRIPTION'
+                            description={weatherData.weather[0].description}
+                            weather={weatherData}
+                            url={iconURL}
+                            icon={description}
+                        />
+                        <Conditions 
+                            title='CLOUDS'
+                            weather={weatherData}
+                            icon={sky}
+                        />
+                        <Conditions 
+                            title='WIND'
+                            wind={getWind(weatherData.wind.speed, weatherData.wind.deg)}
+                            icon={wind}
+                        />
                     </div>
-
                 </div>
+                <Tagline 
+                    tagline={tagline(main)}
+                />
         </div>
         )
     }
