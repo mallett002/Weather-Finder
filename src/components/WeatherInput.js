@@ -1,5 +1,6 @@
 // Presentational component with inputs
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Button, Icon, Input } from 'react-materialize'
 import { isEmpty } from '../constants/constants'
 
@@ -50,6 +51,10 @@ class WeatherInput extends Component {
           </div> 
         )
     }
+}
+
+WeatherInput.propTypes = {
+    weather: PropTypes.object.isRequired
 }
 
 export default WeatherInput

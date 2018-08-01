@@ -207,9 +207,12 @@ class CurrentWeather extends Component {
     }
 }
 
+
 CurrentWeather.propTypes = {
     weatherData: PropTypes.object.isRequired,
-    localTime: PropTypes.object.isRequired
+    localTime: PropTypes.object.isRequired,
+    error: PropTypes.bool,
+    loadingTime: PropTypes.bool.isRequired
 }
 
 
