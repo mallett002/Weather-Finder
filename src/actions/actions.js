@@ -4,18 +4,11 @@ import {
     FETCH_WEATHER_SUCCESS,
     FETCH_WEATHER_FAILURE,
     GET_INITIAL_STATE,
-    GET_TIME
+    GET_TIME,
+    FETCH_TIME_BEGIN,
+    FETCH_TIME_SUCCESS
 } from './actionTypes'
 
-
-/* Shape of State
-{
-    loading: false,
-    weatherData: {},
-    localTime: 0,
-    error: null
-}
-*/
 // restart
 export const fetchWeatherRestart = () => ({
     type: GET_INITIAL_STATE
@@ -38,7 +31,18 @@ export const fetchWeatherFailure = (error) => ({
     payload: { error }
 });
 
+// Fetch Time Begin
+export const fetchTimeBegin = () => ({
+    type: FETCH_TIME_BEGIN
+});
+
+// Fetch Time Success
+export const fetchTimeSuccess = () => ({
+    type: FETCH_TIME_SUCCESS
+});
+
 export const fetchLocalTime = (lat, lng) => dispatch => {
+    dispatch(fetchTimeBegin());
     fetch(`http://api.timezonedb.com/v2/get-time-zone?key=ICX1EE0NGQM3&format=json&by=position&lat=${lat}&lng=${lng}`)
         .then(handleErrors)
         .then(res => res.json())
@@ -47,6 +51,7 @@ export const fetchLocalTime = (lat, lng) => dispatch => {
                 type: GET_TIME,
                 payload: data
             });
+            dispatch(fetchTimeSuccess());
         });
 }
 

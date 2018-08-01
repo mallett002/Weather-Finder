@@ -1,4 +1,10 @@
 /* Core Styles */
+
+body {
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
 h1, h2, h3 {
     margin: 0;
 }
@@ -52,6 +58,14 @@ input {
 
 
 /*Weather Display */
+
+.loader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8em;
+}
+
 .current-weather {
     background: #f3f3f3;
     color: white;
@@ -193,7 +207,7 @@ input {
     /*Weather Display*/
     .current-weather {
         width: 60%;
-        min-height: 50em;
+        height: 55em;
     }
 
     .empty-weather p {
@@ -201,7 +215,7 @@ input {
     }
 
     .located-city-display {
-        min-height: 50em;
+        min-height: 55em;
     }
 
     .no-city {
@@ -236,6 +250,7 @@ input {
 
     .conditions-container {
         flex-direction: row;
+        justify-content: center;
     }
 
     .conditions-wrapper {
@@ -245,7 +260,12 @@ input {
     .tagline-wrapper {
         margin-top: 6em;
     }
+}
 
+@media screen and (min-width: 900px) {
+    .condition-wrapper {
+        margin: 1em;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -260,7 +280,43 @@ input {
         min-height: 60em;
     }
 
-    .condition-wrapper {
-        margin: 1em;
+    .current-weather {
+        height: 60em;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    h1 {
+        font-size: 4em;
+    }
+
+    h2 {
+        font-size: 3em;
+    }
+
+    .conditions-wrapper {
+        margin-top: 6em;
+    }
+
+    .conditions-title h4 {
+        font-size: 3em;
+    }
+    
+    .temp {
+        font-size: 4em;
+    }
+
+    .tagline {
+        font-size: 3em;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .located-city-display {
+        min-height: 70em;
+    }
+
+    .current-weather {
+        height: 70em;
     }
 }

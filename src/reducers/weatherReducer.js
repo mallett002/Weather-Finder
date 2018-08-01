@@ -7,7 +7,6 @@ import {
 
 const initialState = {
     weatherData: {},
-    loading: false,
     error: null
 }
 
@@ -16,21 +15,18 @@ export default function(state = initialState, action) {
         case FETCH_WEATHER_BEGIN:
             return {
                 ...state,
-                loading: true,
                 error: null
             };
         
         case FETCH_WEATHER_SUCCESS:
             return {
                 ...state,
-                weatherData: action.payload.weather,
-                loading: false,
+                weatherData: action.payload.weather
             };
 
         case FETCH_WEATHER_FAILURE:
             return {
                 ...state,
-                loading: false,
                 error: action.payload.error,
                 weatherData: {}
             };

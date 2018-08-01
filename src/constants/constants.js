@@ -54,6 +54,8 @@ export const getImage = (conditions) => {
         return scattered;
     } else if (conditions === 'broken clouds') {
         return broken;
+    } else if (conditions.includes('overcast')) {
+        return broken;
     } else if(conditions.includes('thunderstorm')) {
         return dayStorm;
     } else if(conditions.includes('snow')) {
@@ -70,9 +72,9 @@ export const getTagline = (conditions) => {
     } else if (conditions.includes('rain') || conditions.includes('drizzle')) {
         return "IT'S A LITTLE WET OUT THERE!";
     } else if (conditions.includes('clouds')) {
-        return "THERE ARE A FEW CLOUDS";
-    } else if (conditions === 'overcast') {
-        return "LOTS OF CLOUDS";
+        return "IT'S A LITTLE CLOUDY";
+    } else if (conditions.includes('overcast')) {
+        return "IT'S QUITE CLOUDY TODAY";
     } else if(conditions.includes('thunderstorm')) {
         return "TAKE COVER!";
     } else if(conditions.includes('snow')) {

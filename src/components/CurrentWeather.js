@@ -3,6 +3,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Icon } from 'react-materialize'
+
+// Constants
 import { 
     isEmpty, 
     getImage, 
@@ -15,8 +17,13 @@ import {
     getTagline,
     getNightTag
 } from '../constants/constants'
+
+// Components
 import Conditions from './Conditions'
 import Tagline from './Tagline'
+import Loading from './Loading'
+
+// Images
 import description from '../images/description.png'
 import sky from '../images/sky.png'
 import wind from '../images/wind.png'
@@ -32,7 +39,7 @@ class CurrentWeather extends Component {
     }
 
     render() {
-        const { error, weatherData, localTime, loading } = this.props;
+        const { error, weatherData, localTime, loadingTime } = this.props;
         console.log('localData: ', localTime);
         const local = new Date(localTime.timestamp * 1000);
         const formatted = localTime.formatted;
@@ -106,9 +113,9 @@ class CurrentWeather extends Component {
         }
 
         // while both API requests haven't returned:
-        if (loading) {
-            return <div style={{textAlign: 'center'}}>
-                <h1 style={{color: 'rgb(33, 33, 33)', marginTop: '3em'}}>Loading...</h1>
+        if (loadingTime === true ) {
+            return <div className='loader-wrapper'>
+               <Loading />
             </div>
         }
 

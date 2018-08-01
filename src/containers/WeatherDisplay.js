@@ -9,10 +9,12 @@ import CurrentWeather from '../components/CurrentWeather'
 class WeatherDisplay extends Component {
 
     render() {
-        const { weatherData, localTime, error, loading } = this.props
+        const { weatherData, localTime, error, loadingTime } = this.props
         return (
         <div className='current-weather'>
-            <CurrentWeather localTime={localTime} error={error} weatherData={weatherData} loading={loading} />
+            <CurrentWeather 
+              loadingTime={loadingTime} localTime={localTime} 
+              error={error} weatherData={weatherData} />
         </div>
         )
     }
@@ -26,7 +28,7 @@ WeatherDisplay.propTypes = {
 const mapStateToProps = (state) => ({
     weatherData: state.weather.weatherData,
     localTime: state.localTime.localTime,
-    loading: state.weather.loading,
+    loadingTime: state.localTime.loadingTime,
     error: state.weather.error,
 })
 
